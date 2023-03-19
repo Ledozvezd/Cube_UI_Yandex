@@ -16,6 +16,10 @@ public class Interaction : MonoBehaviour
                     clickable.Hit();
                 }
             }
+            if (hit.collider.TryGetComponent(out Cube cube))
+            {
+                cube.CollectCoins();
+            }
         }
 
     }
