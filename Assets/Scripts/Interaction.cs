@@ -6,19 +6,20 @@ public class Interaction : MonoBehaviour
 {
 
     [SerializeField] private Camera _camera;
+    [SerializeField] private Clickable _clickable;
     void Update()
     {
 
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit)) { 
-            if (hit.collider.TryGetComponent(out Clickable clickable)) {
+            if (hit.collider.TryGetComponent(out ObjectCollider objectCollider)) {
                 if (Input.GetMouseButtonDown(0)) {
-                    clickable.Hit();
+                    _clickable.Hit();
                 }
             }
-            if (hit.collider.TryGetComponent(out Cube cube))
+            if (hit.collider.TryGetComponent(out Cube _cube))
             {
-                cube.CollectCoins();
+                _cube.CollectCoins();
             }
         }
 
